@@ -29,10 +29,19 @@ function App() {
     setCart(cart.filter(book => book.id !== item.id))
   }
 
+  function numOfItems() {
+    let counter = 0;
+    cart.forEach(item => {
+      counter += item.quantity;
+    })
+
+    return counter;
+  }
+
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav numOfTimes={numOfItems()}/>
         <Route path="/" exact component={Home} /> {/*'path=' is how you create a page path*/}
         <Route path="/books" exact render={() => <Books books={books}/>} /> {/*render and the arrow function allows you to pass in props*/}
         <Route path="/books/:id" render={() => <BookInfo books={books} addToCart={addToCart} />} />
