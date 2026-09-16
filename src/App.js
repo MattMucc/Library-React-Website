@@ -9,7 +9,7 @@ import Cart from "./pages/Cart";
 import React, { useState } from "react";
 
 function App() {
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState([]);
   function addToCart() {
     setCart([...cart, {...books, quantity: 1}])
   }
