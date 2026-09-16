@@ -1,6 +1,6 @@
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from "./pages/Home"
 import Books from "./pages/Books"
 import { books } from "./data"
@@ -10,8 +10,8 @@ import React, { useState } from "react";
 
 function App() {
   const [cart, setCart] = useState([]);
-  function addToCart() {
-    setCart([...cart, {...books, quantity: 1}])
+  function addToCart(book) {
+    setCart([...cart, {...book, quantity: 1}])
   }
 
   function changeQuantity(book, quantity) {
@@ -42,10 +42,12 @@ function App() {
     <Router>
       <div className="App">
         <Nav numOfTimes={numOfItems()}/>
-        <Route path="/" exact component={Home} /> {/*'path=' is how you create a page path*/}
-        <Route path="/books" exact render={() => <Books books={books}/>} /> {/*render and the arrow function allows you to pass in props*/}
-        <Route path="/books/:id" render={() => <BookInfo books={books} cart={cart} addToCart={addToCart} />} />
-        <Route path="/cart" render={() => <Cart books={books} cart={cart} changeQuantity={changeQuantity} removeItem={removeItem} />} /> {/*render and the arrow function allows you to pass in props*/}
+        <Routes>
+          <Route path="/" element={<Home />} /> {/*'path=' is how you create a page path*/}
+          <Route path="/books" element={<Books books={books}/>} /> {/*'element=' takes the component itself, so you can pass in props directly*/}
+          <Route path="/books/:id" element={<BookInfo books={books} cart={cart} addToCart={addToCart} />} />
+          <Route path="/cart" element={<Cart books={books} cart={cart} changeQuantity={changeQuantity} removeItem={removeItem} />} />
+        </Routes>
         <Footer />
       </div>
     </Router>

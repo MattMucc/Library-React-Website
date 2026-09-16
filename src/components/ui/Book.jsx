@@ -9,9 +9,10 @@ const Book = ({ book }) => {
     const mountedref = useRef(true);
 
     useEffect(() => {
+        mountedref.current = true;
         const image = new Image();
-        img.src = book.url;
-        img.onLoad = () => {
+        image.src = book.url;
+        image.onload = () => {
             if (mountedref.current)
                 setImg(image);
         }
@@ -20,7 +21,7 @@ const Book = ({ book }) => {
             // When the component unmounts
             mountedref.current = false;
         }
-    })
+    }, [book.url])
 
   return (
     <div className="book">
