@@ -44,7 +44,7 @@ function App() {
         <Nav numOfTimes={numOfItems()}/>
         <Route path="/" exact component={Home} /> {/*'path=' is how you create a page path*/}
         <Route path="/books" exact render={() => <Books books={books}/>} /> {/*render and the arrow function allows you to pass in props*/}
-        <Route path="/books/:id" render={() => <BookInfo books={books} addToCart={addToCart} />} />
+        <Route path="/books/:id" render={() => <BookInfo books={books} cart={cart} addToCart={addToCart} />} />
         <Route path="/cart" render={() => <Cart books={books} cart={cart} changeQuantity={changeQuantity} removeItem={removeItem} />} /> {/*render and the arrow function allows you to pass in props*/}
         <Footer />
       </div>

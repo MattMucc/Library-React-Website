@@ -5,7 +5,7 @@ import Rating from '../components/ui/Rating';
 import Price from '../components/ui/Price';
 import Book from '../components/ui/Book';
 
-const BookInfo = ({ books, addToCart }) => {
+const BookInfo = ({ books, cart, addToCart }) => {
     const { id } = useParams();
     const book = books.find(book => +book.id === +id); // Adding a '+' before a variable converts it to a number
     function addBookToCart(book) {
